@@ -1,32 +1,32 @@
-<h3 align="center">Tiny Toolkit Suite</h3>
+# Tiny Toolkit Suite</h1>
 <br>
-<p align="center">The Tiny Toolkit Suite (TTS) is a collection of scripts designed to automate exploration processes and enhance report's features.</p>
+<p>The Tiny Toolkit Suite (TTS) is a collection of scripts designed to automate exploration processes and enhance report's features.</p>
 
 <br>
 
-# Tools
+## Tools
 
-### dmarc_checker.sh
+#### dmarc_checker.sh
 ```
 Usage:
   WIP
 ```
 
-### rezise_mobile.sh
-```
-Usage:
-  WIP
-```
-
-
-### rezise_window.sh
+#### rezise_mobile.sh
 ```
 Usage:
   WIP
 ```
 
 
-### subtakeover.sh
+#### rezise_window.sh
+```
+Usage:
+  WIP
+```
+
+
+#### subtakeover.sh
 ```
 Usage:
   WIP
