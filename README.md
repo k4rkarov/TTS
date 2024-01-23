@@ -27,7 +27,7 @@ This script automatically resizes your application's windows for taking screensh
 Download the script and then configure a keyboard shortcut in your operating system (recommended shortcut: `Ctrl+Alt+R`).
 
 ```
-Usage: Ctrl+Alt+R to start the tool, then click on the window you want to resize
+Usage: Trigger the shortcut (e.g. Ctrl+Alt+R) to start the tool, then click on the window you want to resize.
 ```
 
 
