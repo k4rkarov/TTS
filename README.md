@@ -10,7 +10,7 @@
 This script checks whether the DMARC policy of the domains is set to 'p=none,' indicating their vulnerability to spoofing attacks.
 
 ```
-Usage: ./dmarc_checker.sh <filename>
+Usage: ./dmarc_checker.sh -f <domains_file>
 ```
 
 ### rezise_mobile.sh
