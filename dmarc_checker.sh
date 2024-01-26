@@ -1,37 +1,62 @@
 #!/bin/bash
 
+show_help() {
+    echo "Usage: $0 -f <domains_file>"
+    echo "  -f    Specifies the file containing the list of domains"
+    exit 1
+}
+
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+if ! command_exists nslookup; then
+    echo -e "${red_color}Error: nslookup command not found. Please install nslookup.${reset_color}"
+    exit 1
+fi
+
+red_color='\033[0;31m'
+green_color='\033[0;32m'
+reset_color='\033[0m'
+
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 <filename>"
-    echo "Please provide the filename containing the list of domains as an argument."
-    exit 1
+    show_help
 fi
 
-file=$1
+while getopts "f:h" option; do
+    case $option in
+        f)
+            domains_file="$OPTARG"
+            ;;
+        h)
+            show_help
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG"
+            show_help
+            ;;
+    esac
+done
 
-if [ ! -f "$file" ]; then
-    echo "The file $file does not exist."
-    exit 1
+if [ -z "$domains_file" ]; then
+    echo -e "${red_color}Error: You need to provide the domains file.${reset_color}"
+    show_help
 fi
 
-none_color=$(tput setaf 1)   # Red color for p=none
-bold=$(tput bold)            # Bold text
-reset=$(tput sgr0)           # Reset to default settings
+if [ ! -f "$domains_file" ]; then
+    echo -e "${red_color}The file $domains_file does not exist.${reset_color}"
+    exit 1
+fi
 
 while IFS= read -r domain; do
-    if [ -n "$domain" ]; then
-        dmarc=$(dig +short TXT _dmarc."$domain" | grep -o '"v=.*"')
-        if [ -n "$dmarc" ]; then
-            echo -e "DMARC for the domain $domain:"
-            if [[ "$dmarc" == *"p=none"* ]]; then
-                echo "Policy: None"
-            else
-                echo "$dmarc"
-            fi
-            echo "=========================================="
-        else
-            echo -e "DMARC not found for the domain $domain."
-            echo "=========================================="
-        fi
+    result=$(nslookup -type=txt "_dmarc.$domain" 2>&1)
+    
+    if echo "$result" | grep -q "** server can't find _dmarc."; then
+        echo -e "${red_color}vulnerable${reset_color} - $domain"
+    else
+        echo -e "${green_color}not vulnerable${reset_color} - $domain"
     fi
-done < "$file"
+done < "$domains_file"
+
+echo -e ""
 
