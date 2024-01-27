@@ -11,7 +11,7 @@ command_exists() {
 }
 
 if ! command_exists nslookup; then
-    echo -e "${red_color}Error: nslookup command not found. Please install nslookup.${reset_color}"
+    echo -e "${red_color}Error: nslookup command not found. Please install dnsutils (Debian, Ubuntu).${reset_color}"
     exit 1
 fi
 
@@ -51,10 +51,12 @@ fi
 while IFS= read -r domain; do
     result=$(nslookup -type=txt "_dmarc.$domain" 2>&1)
     
-    if echo "$result" | grep -q "** server can't find _dmarc."; then
-        echo -e "${red_color}vulnerable${reset_color} - $domain"
+    if echo "$result" | grep -q "server can't find _dmarc."; then
+        echo -e "${red_color}vulnerable [no DMARC record]${reset_color}: $domain"
+    elif echo "$result" | grep -q "v=DMARC1;.*p=none"; then
+        echo -e "${red_color}vulnerable [p=none]${reset_color}: $domain"
     else
-        echo -e "${green_color}not vulnerable${reset_color} - $domain"
+        echo -e "${green_color}not vulnerable${reset_color}: $domain"
     fi
 done < "$domains_file"
 

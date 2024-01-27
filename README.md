@@ -7,7 +7,7 @@
 ## Tools
 
 ### dmarc_checker.sh
-This script checks whether the DMARC policy of the domains is set to 'p=none,' indicating their vulnerability to spoofing attacks.
+This script verifies the presence of a DMARC policy and checks if the policy is set to 'p=none,' indicating a vulnerability to spoofing attacks.
 
 ```
 Usage: ./dmarc_checker.sh -f <domains_file>
