@@ -19,7 +19,7 @@ if [ -z "$winId" ]; then
 fi
 
 # Resize the window
-xdotool windowsize "$winId" 800 1000
+xdotool windowsize "$winId" 800 600
 
 # Check if xdotool command was successful
 if [ $? -ne 0 ]; then
