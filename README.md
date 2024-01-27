@@ -26,6 +26,11 @@ Usage: ./rezise_mobile.sh
 This script automatically resizes your application's windows for taking screenshots to an 800x600 resolution, making it an ideal size for crafting reports.
 Download the script and then configure a keyboard shortcut in your operating system (recommended shortcut: `Ctrl+Alt+R`).
 
+<details>
+  <summary>Click here to see a keyboard configuration example</summary>
+  <p align=center><img src="https://raw.githubusercontent.com/k4rkarov/TTS/main/img/resize_window.png"></p>
+</details>
+
 ```
 Usage: Trigger the shortcut (e.g. Ctrl+Alt+R) to start the tool, then click on the window you want to resize.
 ```
