@@ -2,6 +2,9 @@
 <br>
 <p>The Tiny Toolkit Suite (TTS) is a collection of scripts designed to automate exploration processes and enhance report's features.</p>
 
+> [!NOTE]  
+> Most tools have a -h, --help option which explains how the script works.
+
 <br>
 
 ## Tools
@@ -42,4 +45,14 @@ This script will check if a subdomain is prone to subdomain takeover.
 
 ```
 Usage: ./subtakeover.sh <filename>
+```
+
+
+
+
+### subtakeover.sh
+This script applies hardening settings to your Bash shell.
+
+```
+Usage: ./bashrc-with-steroids.sh
 ```
