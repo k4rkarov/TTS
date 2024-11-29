@@ -2,6 +2,8 @@
 <br>
 <p>The Tiny Toolkit Suite (TTS) is a collection of scripts designed to automate exploration processes and enhance report's features.</p>
 
+<br>
+
 > [!NOTE]  
 > Most tools have a -h, --help option which explains how the script works.
 
