@@ -52,7 +52,7 @@ Usage: ./subtakeover.sh <filename>
 
 
 
-### subtakeover.sh
+### bashrc-with-steroids.sh
 This script applies hardening settings to your Bash shell.
 
 ```
