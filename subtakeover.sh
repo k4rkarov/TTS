@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <filename>"
     echo "Please provide the filename as an argument."

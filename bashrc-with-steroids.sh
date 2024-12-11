@@ -1,10 +1,13 @@
 #!/bin/bash
 
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 SCRIPT_NAME="BashRC with Steroids"
 BACKUP_FILE="$HOME/.bashrc.backup"
 BASHRC_FILE="$HOME/.bashrc"
 
-# Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -64,7 +67,6 @@ show_verbose() {
     exit 0
 }
 
-# Error handling for invalid flags
 if [[ "$1" != "--help" && "$1" != "-h" && "$1" != "--restore" && "$1" != "--verbose" && "$1" != "-v" && -n "$1" ]]; then
     echo -e "${RED}Error:${RESET} Invalid option '$1'."
     echo -e "Run ${GREEN}$0 --help${RESET} to see the available options."
@@ -81,13 +83,11 @@ elif [[ "$1" == "--verbose" || "$1" == "-v" ]]; then
     exit 0
 fi
 
-# Create a backup of the current .bashrc if it doesn't already exist
 if [[ ! -f $BACKUP_FILE ]]; then
     cp $BASHRC_FILE $BACKUP_FILE
     echo -e "${GREEN}Backup of the original ~/.bashrc created at $BACKUP_FILE.${RESET}"
 fi
 
-# Configuration to append to .bashrc
 CONFIG="
 # --- $SCRIPT_NAME ---
 PROMPT_COMMAND=\"history -a; history -n\"
@@ -100,10 +100,8 @@ shopt -s histappend histreedit histverify checkwinsize
 # --- End of $SCRIPT_NAME ---
 "
 
-# Append the configuration to the .bashrc file
 echo "$CONFIG" >> $BASHRC_FILE
 
-# Final output
 echo -e "${BLUE}The following changes have been applied to your ~/.bashrc:${RESET}"
 echo -e "  - Persistent history updates."
 echo -e "  - History capacity expanded."

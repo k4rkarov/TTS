@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Colors for output
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 red_color='\033[0;31m'
 green_color='\033[0;32m'
 reset_color='\033[0m'
 
-# Help message
 show_help() {
     echo -e "${green_color}Usage: $0 [options] [domain]${reset_color}"
     echo "  -f      Specifies the file containing the list of domains"
@@ -14,27 +16,22 @@ show_help() {
     exit 0
 }
 
-# Check if command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Validate domain format
 is_valid_domain() {
     [[ "$1" =~ ^(([a-zA-Z0-9](-*[a-zA-Z0-9])*)\.)+[a-zA-Z]{2,}$ ]]
 }
 
-# Ensure nslookup is installed
 if ! command_exists nslookup; then
     echo -e "${red_color}Error: nslookup command not found. Please install dnsutils.${reset_color}"
     exit 1
 fi
 
-# Variables
 domains_file=""
 single_domain=""
 
-# Parse arguments
 if [ $# -eq 0 ]; then
     show_help
 else
@@ -58,12 +55,10 @@ else
     fi
 fi
 
-# Function to check DMARC record
 check_dmarc() {
     local domain="$1"
     local result
 
-    # Validate the domain
     if ! is_valid_domain "$domain"; then
         echo -e "${red_color}Invalid domain:${reset_color} $domain"
         return
@@ -79,7 +74,6 @@ check_dmarc() {
     fi
 }
 
-# Process domains
 if [ -n "$domains_file" ]; then
     if [ ! -f "$domains_file" ]; then
         echo -e "${red_color}Error: The file $domains_file does not exist.${reset_color}"

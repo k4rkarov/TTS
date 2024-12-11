@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 display_help() {
     echo "Usage: $0 [-h|--help] [file_path]"
     echo "  -h, --help    Display this help menu"
