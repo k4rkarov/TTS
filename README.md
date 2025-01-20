@@ -56,5 +56,15 @@ Usage: ./subtakeover.sh <filename>
 This script applies hardening settings to your Bash shell.
 
 ```
+Usage: ./usermail_generator.sh [-h|--help] [-d|--domain DOMAIN] [-n|--number NUMBER] [-l|--language LANGUAGE] [-f|--fullname]
+```
+
+
+
+
+### usermail_generator.sh
+This script generates emails for brute force testing.
+
+```
 Usage: ./bashrc-with-steroids.sh
 ```
