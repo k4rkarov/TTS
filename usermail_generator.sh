@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 function show_help() {
     echo "Usage: $0 [-h|--help] [-d|--domain DOMAIN] [-n|--number NUMBER] [-l|--language LANGUAGE] [-f|--fullname]"
     echo ""

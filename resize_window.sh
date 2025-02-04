@@ -9,8 +9,17 @@ handle_error() {
     exit 1
 }
 
-command -v xwininfo >/dev/null 2>&1 || handle_error "xwininfo is not installed. Please install it."
-command -v xdotool >/dev/null 2>&1 || handle_error "xdotool is not installed. Please install it."
+install_package() {
+    read -p "Do you want to install $1? [Y/n] " choice
+    case "$choice" in
+        [Yy]|"") sudo apt update && sudo apt install -y "$1" || handle_error "Failed to install $1." ;;
+        [Nn]) handle_error "$1 is required but not installed." ;;
+        *) echo "Invalid input. Assuming 'No'."; handle_error "$1 is required but not installed." ;;
+    esac
+}
+
+command -v xwininfo >/dev/null 2>&1 || install_package "x11-utils"
+command -v xdotool >/dev/null 2>&1 || install_package "xdotool"
 
 winId=$(xwininfo | awk '/Window id:/ {print $4}')
 
@@ -25,4 +34,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Window resized successfully."
-
