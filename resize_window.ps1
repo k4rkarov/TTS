@@ -1,3 +1,7 @@
+# ----------------
+# - by @k4rkarov -
+# ----------------
+
 Add-Type @"
 using System;
 using System.Runtime.InteropServices;
